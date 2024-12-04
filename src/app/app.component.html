@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="box-heading">
+    <h1>Welcome to My Page Built with the Angular Framework</h1>
+  </div>
+
+  <p>Discover how I built this web page using the Angular framework. Click the link below to learn more about the development process. Please note, I have basic prior knowledge on how Angular works</p>
+  <a href="#development-process" class="btn">Explore the Development Process</a>
+
+  <section id="development-process">
+    <h2>Development Process</h2>
+    <article>
+      <h3>Installation</h3>
+      <p>To get started with Angular, I installed the Angular CLI globally using the following command:</p>
+      <code>npm install -g &#64;angular/cli</code>
+      <p>
+        During installation, I encountered an issue with an outdated version of Node.js. To resolve this, I upgraded Node.js to a version compatible with Angular CLI.
+      </p>
+    </article>
+
+    <article>
+      <h3>Development</h3>
+      <p>I created this Angular project by running:</p>
+      <code>ng new my-web-page</code>
+      <p>After creating the project, I updated the following files:</p>
+      <ul>
+        <li><strong>app.component.html</strong>: Added the structure and content for this page.</li>
+        <li><strong>styles.css</strong>: Customized the styles to enhance the page's appearance.</li>
+      </ul>
+    </article>
+
+    <article>
+      <h3>Challenges and Solutions</h3>
+      <p>
+        <strong>Challenge:</strong> The Node.js version installed on my system was outdated and incompatible with the Angular CLI, causing issues during the setup and project creation.<br>
+        <strong>Solution:</strong> To resolve this, I upgraded Node.js to the latest stable version. This ensured compatibility with the Angular CLI and allowed the installation to proceed smoothly.<br>
+      </p>
+      <p>
+        <strong>Challenge:</strong> Implementing form validation was more challenging than anticipated, especially with Angular's reactive forms, as I was not fully familiar with its syntax and structure.<br>
+        <strong>Solution:</strong> I researched and watched frew tutorials and was able to apply correct validations and display helpful error messages in real-time.<br>
+      </p>
+    </article>
+  </section>
+  <section id="user-form">
+    <h2>Let's Calculate Your Age</h2>
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="birthYear">Enter Your Birth Year:</label>
+        <input id="birthYear" type="number" formControlName="birthYear" />
+        <div *ngIf="userForm.get('birthYear')?.invalid && userForm.get('birthYear')?.touched">
+          <small *ngIf="userForm.get('birthYear')?.hasError('required')">Birth Year is required.</small>
+          <small *ngIf="userForm.get('birthYear')?.hasError('min')">Please enter a valid year (1900 and later).</small>
+          <small *ngIf="userForm.get('birthYear')?.hasError('max')">Please enter a year not exceeding 2024.</small>
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="userForm.invalid">Submit</button>
+    </form>
+
+    <div *ngIf="age !== null">
+      <h4>Your Age in 2024: {{ age }}</h4>
+    </div>
+  </section>
+</div>
